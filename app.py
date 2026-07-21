@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return {
-        "message": "Hello from Flask!",
+        "message": return "Hello from Flask DevOps Project - Version 2!",
         "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }
 
