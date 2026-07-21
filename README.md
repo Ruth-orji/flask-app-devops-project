@@ -2,206 +2,208 @@
 
 A complete end-to-end DevOps project demonstrating modern CI/CD and GitOps practices using a simple Flask application deployed to Kubernetes.
 
-## 📖 Project Overview
+![Python](https://img.shields.io/badge/Python-3.14-blue?logo=python)
+![Flask](https://img.shields.io/badge/Flask-Web_App-black?logo=flask)
+![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestration-326CE5?logo=kubernetes&logoColor=white)
+![Terraform](https://img.shields.io/badge/Terraform-IaC-7B42BC?logo=terraform&logoColor=white)
+![Helm](https://img.shields.io/badge/Helm-Charts-0F1689?logo=helm)
+![ArgoCD](https://img.shields.io/badge/ArgoCD-GitOps-EF7B4D?logo=argo)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI/CD-2088FF?logo=githubactions)
 
-This project showcases the complete software delivery lifecycle from writing application code to automated deployment on Kubernetes.
-
-The application is containerized using Docker, automatically built and pushed to Docker Hub with GitHub Actions, deployed to a Kubernetes cluster using Helm, and continuously managed by Argo CD following GitOps principles.
-
----
-
-## 🏗️ Architecture
-
-```
-Developer
-    │
-    ▼
-GitHub Repository
-    │
-    ▼
-GitHub Actions (CI)
-    │
-    ▼
-Docker Build
-    │
-    ▼
-Docker Hub
-    │
-    ▼
-Argo CD (GitOps)
-    │
-    ▼
-Helm Chart
-    │
-    ▼
-Kubernetes (Minikube)
-    │
-    ▼
-Flask Application
-```
+> **An end-to-end DevOps project demonstrating CI/CD and GitOps by deploying a Flask application to Kubernetes using Docker, GitHub Actions, Terraform, Helm, and Argo CD.**
 
 ---
 
-## 🛠️ Technologies Used
+## 📖 Overview
 
-* Python
-* Flask
-* Docker
-* Docker Hub
-* Git
-* GitHub
-* GitHub Actions
-* Kubernetes
-* Minikube
-* Helm
-* Argo CD
-* Terraform
+This repository demonstrates a complete DevOps workflow from application development to automated Kubernetes deployment.
+
+## 🏗️ Solution Architecture
+
+```mermaid
+flowchart LR
+
+Developer["👩‍💻 Developer"]
+
+GitHub["GitHub Repository"]
+
+Actions["GitHub Actions"]
+
+DockerHub["Docker Hub"]
+
+Terraform["Terraform"]
+
+Minikube["Minikube Cluster"]
+
+Helm["Helm Chart"]
+
+Argo["Argo CD"]
+
+Flask["Flask Application"]
+
+Developer -->|git push| GitHub
+
+GitHub --> Actions
+
+Actions -->|Build & Push Image| DockerHub
+
+GitHub --> Argo
+
+Terraform --> Minikube
+
+DockerHub --> Minikube
+
+Helm --> Minikube
+
+Argo --> Helm
+
+Minikube --> Flask
+```
+---
+
+# 🔄 CI/CD Pipeline
+
+This project uses **GitHub Actions** to automatically build and publish a Docker image whenever code is pushed to the `main` branch.
+
+```mermaid
+flowchart LR
+
+Code["Developer Pushes Code"]
+
+GitHub["GitHub Repository"]
+
+Workflow["GitHub Actions Workflow"]
+
+Build["Build Docker Image"]
+
+DockerHub["Push Image to Docker Hub"]
+
+Success["Deployment Artifact Ready"]
+
+Code --> GitHub
+
+GitHub --> Workflow
+
+Workflow --> Build
+
+Build --> DockerHub
+
+DockerHub --> Success
+```
 
 ---
 
-## 📂 Project Structure
+# ☸️ GitOps Workflow
 
+Argo CD continuously monitors the GitHub repository and synchronizes Kubernetes with the desired state stored in Git.
+
+```mermaid
+flowchart LR
+
+GitHub["GitHub Repository"]
+
+Argo["Argo CD"]
+
+Helm["Helm Chart"]
+
+Kubernetes["Minikube Cluster"]
+
+Application["Flask Application"]
+
+GitHub --> Argo
+
+Argo --> Helm
+
+Helm --> Kubernetes
+
+Kubernetes --> Application
 ```
-.
+
+---
+
+# 📂 Project Structure
+
+```text
+flask-app-devops-project/
+│
 ├── .github/
 │   └── workflows/
 │       └── docker.yml
+│
 ├── flask-time-chart/
 │   ├── templates/
 │   ├── Chart.yaml
 │   └── values.yaml
+│
 ├── terraform/
+│   ├── backend.tf
+│   ├── provider.tf
+│   ├── main.tf
+│   └── variables.tf
+│
 ├── app.py
 ├── Dockerfile
-├── .dockerignore
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-## ⚙️ CI/CD Pipeline
+# 🛠️ Technology Stack
 
-1. Developer pushes code to GitHub.
-2. GitHub Actions automatically builds the Docker image.
-3. The image is pushed to Docker Hub.
-4. Argo CD monitors the Git repository.
-5. Kubernetes is synchronized with the desired application state.
-6. The Flask application is deployed automatically.
+| Category | Technology |
+|----------|------------|
+| Language | Python |
+| Framework | Flask |
+| Containerization | Docker |
+| Container Registry | Docker Hub |
+| CI/CD | GitHub Actions |
+| Infrastructure as Code | Terraform |
+| Container Orchestration | Kubernetes (Minikube) |
+| Kubernetes Package Manager | Helm |
+| GitOps | Argo CD |
+| Version Control | Git & GitHub |
 
----
+## 🏗️ Solution Architecture
 
-## 🚀 Running Locally
+![Solution Architecture](docs/diagrams/architecture.png)
 
-Clone the repository:
+## 🔄 CI/CD Pipeline
 
-```bash
-git clone https://github.com/Ruth-orji/flask-app-devops-project.git
-cd flask-app-devops-project
-```
+![CI/CD Pipeline](docs/diagrams/cicd-pipeline.png)
 
-Create a virtual environment:
+## ☸️ GitOps Workflow
 
-```bash
-python -m venv venv
-```
+![GitOps Workflow](docs/diagrams/gitops-workflow.png)
 
-Activate the environment:
+## 🚀 Kubernetes Deployment
 
-### Windows
+![Kubernetes Deployment](docs/diagrams/kubernetes-deployment.png)
 
-```powershell
-venv\Scripts\activate
-```
+<h2>🏗️ Solution Architecture</h2>
 
-Install dependencies:
+<p align="center">
+  <img src="docs/diagrams/architecture.png" width="900">
+</p>
 
-```bash
-pip install flask
-```
+<h2>🔄 CI/CD Pipeline</h2>
 
-Run the application:
+<p align="center">
+  <img src="docs/diagrams/cicd-pipeline.png" width="900">
+</p>
 
-```bash
-python app.py
-```
+<h2>🔄 Gitops Workflow</h2>
 
----
+<p align="center">
+  <img src="docs/diagrams/gitops-workflow.png" width="900">
+</p>
 
-## 🐳 Docker
+<h2>🔄 Kubernetes Deployment</h2>
 
-Build the image:
-
-```bash
-docker build -t flask-time-app .
-```
-
-Run the container:
-
-```bash
-docker run -d -p 8080:8080 flask-time-app
-```
-
----
-
-## ☸️ Kubernetes Deployment
-
-Deploy using Helm:
-
-```bash
-helm install flask-time flask-time-chart
-```
-
-Verify deployment:
-
-```bash
-kubectl get all
-```
-
----
-
-## 🔄 GitOps with Argo CD
-
-Install Argo CD:
-
-```bash
-helm install argocd argo/argo-cd --namespace argocd --create-namespace
-```
-
-Port-forward the UI:
-
-```bash
-kubectl port-forward svc/argocd-server -n argocd 8081:443
-```
-
-Open:
-
-```
-https://localhost:8081
-```
-
----
-
-## 📸 Screenshots
-
-Add screenshots of:
-
-* Flask application running
-* Docker container
-* GitHub Actions workflow
-* Docker Hub repository
-* Kubernetes pods
-* Helm deployment
-* Argo CD dashboard (Healthy & Synced)
-
----
-
-## 👩‍💻 Author
-
-**Ruth Orji**
-
-GitHub: https://github.com/Ruth-orji
-
----
+<p align="center">
+  <img src="docs/diagrams/kubernetes-deployment.png" width="900">
+</p>
 
 ## 📄 License
 
