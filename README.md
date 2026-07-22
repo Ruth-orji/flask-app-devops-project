@@ -17,11 +17,27 @@ A complete end-to-end DevOps project demonstrating modern CI/CD and GitOps pract
 
 ## 📖 Overview
 
-This repository demonstrates a complete DevOps workflow from application development to automated Kubernetes deployment.
+This repository demonstrates a complete DevOps workflow from application development to automated Kubernetes deployment. The sample Flask application exposes a simple HTTP endpoint that returns a greeting message together with the current server timestamp. It serves as the workload for demonstrating a complete DevOps and GitOps deployment pipeline.
+
+---
+
+## 🔄 Project Workflow
+
+This project follows a modern DevOps workflow:
+
+1. The developer pushes code to GitHub.
+2. GitHub Actions automatically builds and pushes a Docker image to Docker Hub.
+3. Terraform provisions the Kubernetes environment.
+4. Helm manages the Kubernetes deployment.
+5. Argo CD continuously synchronizes the cluster with the Git repository.
+6. The Flask application is deployed automatically into Minikube.
+
+---
 
 ## 📑 Table of Contents
 
 - [Overview](#-overview)
+- [Project Workflow](#-project-workflow)
 - [Features](#-features)
 - [Technology Stack](#️-technology-stack)
 - [Solution Architecture](#️-solution-architecture)
@@ -30,10 +46,14 @@ This repository demonstrates a complete DevOps workflow from application develop
 - [Kubernetes Deployment](#-kubernetes-deployment)
 - [Project Structure](#-project-structure)
 - [Getting Started](#-getting-started)
+- [Prerequisites](#-prerequsite)
 - [Project Screenshots](#-project-screenshots)
+- [Key Skills Demonstrated](#-key-skill-demonstrated)
 - [Future Improvements](#-future-improvements)
 - [Author](#-author)
 - [License](#-license)
+
+---
 
 ## ✨ Features
 
@@ -45,6 +65,8 @@ This repository demonstrates a complete DevOps workflow from application develop
 - GitOps continuous deployment with Argo CD
 - Docker Hub image publishing
 - End-to-end DevOps workflow
+
+---
 
 # 🛠️ Technology Stack
 
@@ -93,9 +115,10 @@ This diagram illustrates how Kubernetes components work together to deploy and e
   <img src="docs/diagrams/kubernetes-deployment.png" width="900">
 </p>
 
+---
+
 ## 📂 Project Structure
 
-```text
 flask-app-devops-project/
 │
 ├── .github/
@@ -107,14 +130,22 @@ flask-app-devops-project/
 │   └── screenshots/
 │
 ├── flask-time-chart/
+│   ├── templates/
+│   ├── Chart.yaml
+│   └── values.yaml
 │
 ├── terraform/
+│   ├── backend.tf
+│   ├── provider.tf
+│   ├── main.tf
+│   └── variables.tf
 │
 ├── app.py
 ├── Dockerfile
 ├── README.md
 └── .gitignore
-```
+---
+
 ## 📋 Prerequisites
 
 Before running this project, ensure you have installed:
@@ -126,6 +157,7 @@ Before running this project, ensure you have installed:
 - Helm
 - Terraform
 - A GitHub account
+---
 
 ## 🚀 Getting Started
 
@@ -170,6 +202,8 @@ minikube service flask-time-service
 
 Create an application in the Argo CD UI and point it to this repository.
 
+---
+
 ## 📸 Project Screenshots
 
 ### Flask Application
@@ -196,6 +230,20 @@ Create an application in the Argo CD UI and point it to this repository.
   <img src="docs/screenshots/dockerhub.png" width="900">
 </p>
 
+---
+
+## 💡 Key Skills Demonstrated
+
+- Docker containerization
+- Kubernetes deployments
+- Helm package management
+- Terraform Infrastructure as Code
+- GitHub Actions CI
+- Argo CD GitOps
+- Docker Hub image publishing
+- Git version control
+---
+
 ## 🚀 Future Improvements
 
 - Deploy to Amazon EKS
@@ -205,14 +253,17 @@ Create an application in the Argo CD UI and point it to this repository.
 - Add centralized logging with the ELK Stack
 - Configure HTTPS using an Ingress Controller
 
+---
+
 ## 👩‍💻 Author
 
 **Ruth Orji**  
 Cloud & DevOps Engineer
 
 - **GitHub:** [Ruth-orji](https://github.com/Ruth-orji)
-- **LinkedIn:** [Ruth Orji](https://www.linkedin.com/in/RUTH ORJI)
+- **LinkedIn:** [Ruth Orji](https://www.linkedin.com/in/ruth-orji-742941276)
 
+---
 
 ## 📄 License
 
