@@ -19,136 +19,32 @@ A complete end-to-end DevOps project demonstrating modern CI/CD and GitOps pract
 
 This repository demonstrates a complete DevOps workflow from application development to automated Kubernetes deployment.
 
-## 🏗️ Solution Architecture
+## 📑 Table of Contents
 
-```mermaid
-flowchart LR
+- [Overview](#-overview)
+- [Features](#-features)
+- [Technology Stack](#️-technology-stack)
+- [Solution Architecture](#️-solution-architecture)
+- [CI/CD Pipeline](#-cicd-pipeline)
+- [GitOps Workflow](#-gitops-workflow)
+- [Kubernetes Deployment](#-kubernetes-deployment)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Project Screenshots](#-project-screenshots)
+- [Future Improvements](#-future-improvements)
+- [Author](#-author)
+- [License](#-license)
 
-Developer["👩‍💻 Developer"]
+## ✨ Features
 
-GitHub["GitHub Repository"]
-
-Actions["GitHub Actions"]
-
-DockerHub["Docker Hub"]
-
-Terraform["Terraform"]
-
-Minikube["Minikube Cluster"]
-
-Helm["Helm Chart"]
-
-Argo["Argo CD"]
-
-Flask["Flask Application"]
-
-Developer -->|git push| GitHub
-
-GitHub --> Actions
-
-Actions -->|Build & Push Image| DockerHub
-
-GitHub --> Argo
-
-Terraform --> Minikube
-
-DockerHub --> Minikube
-
-Helm --> Minikube
-
-Argo --> Helm
-
-Minikube --> Flask
-```
----
-
-# 🔄 CI/CD Pipeline
-
-This project uses **GitHub Actions** to automatically build and publish a Docker image whenever code is pushed to the `main` branch.
-
-```mermaid
-flowchart LR
-
-Code["Developer Pushes Code"]
-
-GitHub["GitHub Repository"]
-
-Workflow["GitHub Actions Workflow"]
-
-Build["Build Docker Image"]
-
-DockerHub["Push Image to Docker Hub"]
-
-Success["Deployment Artifact Ready"]
-
-Code --> GitHub
-
-GitHub --> Workflow
-
-Workflow --> Build
-
-Build --> DockerHub
-
-DockerHub --> Success
-```
-
----
-
-# ☸️ GitOps Workflow
-
-Argo CD continuously monitors the GitHub repository and synchronizes Kubernetes with the desired state stored in Git.
-
-```mermaid
-flowchart LR
-
-GitHub["GitHub Repository"]
-
-Argo["Argo CD"]
-
-Helm["Helm Chart"]
-
-Kubernetes["Minikube Cluster"]
-
-Application["Flask Application"]
-
-GitHub --> Argo
-
-Argo --> Helm
-
-Helm --> Kubernetes
-
-Kubernetes --> Application
-```
-
----
-
-# 📂 Project Structure
-
-```text
-flask-app-devops-project/
-│
-├── .github/
-│   └── workflows/
-│       └── docker.yml
-│
-├── flask-time-chart/
-│   ├── templates/
-│   ├── Chart.yaml
-│   └── values.yaml
-│
-├── terraform/
-│   ├── backend.tf
-│   ├── provider.tf
-│   ├── main.tf
-│   └── variables.tf
-│
-├── app.py
-├── Dockerfile
-├── README.md
-└── .gitignore
-```
-
----
+- Containerized Flask application with Docker
+- Infrastructure provisioning using Terraform
+- Local Kubernetes cluster with Minikube
+- Helm chart for Kubernetes deployments
+- Continuous Integration using GitHub Actions
+- GitOps continuous deployment with Argo CD
+- Docker Hub image publishing
+- End-to-end DevOps workflow
 
 # 🛠️ Technology Stack
 
@@ -167,43 +63,150 @@ flask-app-devops-project/
 
 ## 🏗️ Solution Architecture
 
-![Solution Architecture](docs/diagrams/architecture.png)
-
-## 🔄 CI/CD Pipeline
-
-![CI/CD Pipeline](docs/diagrams/cicd-pipeline.png)
-
-## ☸️ GitOps Workflow
-
-![GitOps Workflow](docs/diagrams/gitops-workflow.png)
-
-## 🚀 Kubernetes Deployment
-
-![Kubernetes Deployment](docs/diagrams/kubernetes-deployment.png)
-
-<h2>🏗️ Solution Architecture</h2>
+The diagram below illustrates the complete DevOps workflow, showing how application code flows from development through CI/CD and GitOps into a Kubernetes cluster.
 
 <p align="center">
   <img src="docs/diagrams/architecture.png" width="900">
 </p>
 
-<h2>🔄 CI/CD Pipeline</h2>
+## 🔄 CI/CD Pipeline
+
+The CI/CD pipeline automatically builds and publishes a Docker image to Docker Hub whenever changes are pushed to the `main` branch using GitHub Actions.
 
 <p align="center">
   <img src="docs/diagrams/cicd-pipeline.png" width="900">
 </p>
 
-<h2>🔄 Gitops Workflow</h2>
+## ☸️ GitOps Workflow
+
+Argo CD continuously monitors the GitHub repository and synchronizes the Kubernetes cluster with the desired state stored in Git.
 
 <p align="center">
   <img src="docs/diagrams/gitops-workflow.png" width="900">
 </p>
 
-<h2>🔄 Kubernetes Deployment</h2>
+## ☸️ Kubernetes Deployment
+
+This diagram illustrates how Kubernetes components work together to deploy and expose the Flask application inside the Minikube cluster.
 
 <p align="center">
   <img src="docs/diagrams/kubernetes-deployment.png" width="900">
 </p>
+
+## 📂 Project Structure
+
+```text
+flask-app-devops-project/
+│
+├── .github/
+│   └── workflows/
+│       └── docker.yml
+│
+├── docs/
+│   ├── diagrams/
+│   └── screenshots/
+│
+├── flask-time-chart/
+│
+├── terraform/
+│
+├── app.py
+├── Dockerfile
+├── README.md
+└── .gitignore
+```
+## 📋 Prerequisites
+
+Before running this project, ensure you have installed:
+
+- Git
+- Docker Desktop
+- Minikube
+- kubectl
+- Helm
+- Terraform
+- A GitHub account
+
+## 🚀 Getting Started
+
+### Clone the repository
+
+```bash
+git clone https://github.com/Ruth-orji/flask-app-devops-project.git
+cd flask-app-devops-project
+```
+
+### Build Docker image
+
+```bash
+docker build -t flask-time-app .
+```
+
+### Start Minikube
+
+```bash
+minikube start
+```
+
+### Deploy using Helm
+
+```bash
+helm install flask-time flask-time-chart
+```
+### Verify the deployment
+
+```bash
+kubectl get pods
+kubectl get services
+```
+
+### Access the application
+
+```bash
+minikube service flask-time-service
+```
+
+### Deploy with Argo CD
+
+Create an application in the Argo CD UI and point it to this repository.
+
+## 📸 Project Screenshots
+
+### Flask Application
+
+<p align="center">
+  <img src="docs/screenshots/flask-app.png" width="900">
+</p>
+
+### Argo CD Dashboard
+
+<p align="center">
+  <img src="docs/screenshots/argocd-dashboard.png" width="900">
+</p>
+
+### GitHub Actions
+
+<p align="center">
+  <img src="docs/screenshots/github-actions.png" width="900">
+</p>
+
+## 🚀 Future Improvements
+
+- Deploy to Amazon EKS
+- Provision AWS infrastructure with Terraform
+- Store Docker images in Amazon ECR
+- Implement monitoring with Prometheus and Grafana
+- Add centralized logging with the ELK Stack
+- Configure HTTPS using an Ingress Controller
+
+## 👩‍💻 Author
+
+**Ruth Orji**  
+Cloud & DevOps Engineer
+
+- **GitHub:** [Ruth-orji](https://github.com/Ruth-orji)
+- **LinkedIn:** [Ruth Orji](https://www.linkedin.com/in/RUTH ORJI)
+
 
 ## 📄 License
 
