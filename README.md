@@ -190,6 +190,12 @@ Create an application in the Argo CD UI and point it to this repository.
   <img src="docs/screenshots/github-actions.png" width="900">
 </p>
 
+### Docker Hub Repository
+
+<p align="center">
+  <img src="docs/screenshots/dockerhub.png" width="900">
+</p>
+
 ## 🚀 Future Improvements
 
 - Deploy to Amazon EKS
